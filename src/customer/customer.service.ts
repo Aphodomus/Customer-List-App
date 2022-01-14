@@ -38,11 +38,15 @@ export class CustomerService {
         try {
             return await this.customerModel.findByIdAndUpdate(id, createCustomerDTO, { new: true});
         } catch (error) {
-            throw new HttpException(`Can't update the user with Id: ${id}`, HttpStatus.BAD_REQUEST);
+            throw new HttpException(`Can't update the customer with Id: ${id}`, HttpStatus.BAD_REQUEST);
         }
     }
 
     async remove(id: string): Promise<any> {
-        return await this.customerModel.findByIdAndDelete(id);
+        try {
+            return await this.customerModel.findByIdAndDelete(id);
+        } catch (error) {
+            throw new HttpException(`Can't delete the customer with Id: ${id}`, HttpStatus.BAD_REQUEST);
+        }
     }
 }
