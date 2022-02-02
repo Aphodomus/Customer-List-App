@@ -33,7 +33,7 @@ export class CustomerController {
         return res.status(HttpStatus.OK).json(customer);
     }
 
-    @Put('customer/:id')
+    @Put('/update')
     async update(@Res() res, @Query('id') id: string, @Body() updateCustomer: CreateCustomerDTO) {
         const customer = await this.customerService.update(id, updateCustomer);
 
@@ -47,7 +47,7 @@ export class CustomerController {
         });
     }
 
-    @Delete('customer/:id')
+    @Delete('/delete')
     async delete(@Res() res, @Query('id') id: string) {
         const customer = await this.customerService.remove(id);
 
